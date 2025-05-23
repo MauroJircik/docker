@@ -5,6 +5,7 @@
     <ul>
       <li v-for="u in users" :key="u.id">{{ u.name }} ({{ u.email }})</li>
     </ul>
+
     <h2>Compras</h2>
     <ul>
       <li v-for="p in purchases" :key="p.id">
@@ -22,7 +23,15 @@ const users = ref([])
 const purchases = ref([])
 
 onMounted(async () => {
-  users.value = (await axios.get('http://backend:3001/users')).data
-  purchases.value = (await axios.get('http://backend:3001/purchases')).data
+  try {
+    const resUsers = await axios.get('http://localhost:3001/users')
+    const resPurchases = await axios.get('http://localhost:3001/purchases')
+    users.value = resUsers.data
+    purchases.value = resPurchases.data
+  } catch (err) {
+    console.error('Erro ao carregar dados:', err)
+  }
 })
 </script>
+
+
