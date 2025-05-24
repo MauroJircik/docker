@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <h2>Usuários</h2>
@@ -21,13 +20,18 @@ import axios from 'axios'
 
 const users = ref([])
 const purchases = ref([])
+const items = ref([])
 
 onMounted(async () => {
   try {
-    const resUsers = await axios.get('http://localhost:3001/users')
-    const resPurchases = await axios.get('http://localhost:3001/purchases')
+    // ✅ Use caminhos relativos para que Nginx redirecione para o backend
+    const resUsers = await axios.get('/api/users')
+    const resPurchases = await axios.get('/api/purchases')
+    const resItems = await axios.get('/api/items')
+
     users.value = resUsers.data
     purchases.value = resPurchases.data
+    items.value = resItems.data
   } catch (err) {
     console.error('Erro ao carregar dados:', err)
   }
