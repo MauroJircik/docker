@@ -5,8 +5,6 @@ services:
     image: concord-backend
     ports:
       - "3001:3001"
-    volumes:
-      - backend_data:/app
     networks:
       - app-net
 
@@ -14,13 +12,8 @@ services:
     image: concord-frontend
     ports:
       - "8080:80"
-    depends_on:
-      - backend
     networks:
       - app-net
-
-volumes:
-  backend_data:
 
 networks:
   app-net:
