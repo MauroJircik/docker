@@ -6,7 +6,7 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ./backend:/app
+      - backend_data:/app
     networks:
       - app-net
 
@@ -18,6 +18,9 @@ services:
       - backend
     networks:
       - app-net
+
+volumes:
+  backend_data:
 
 networks:
   app-net:
