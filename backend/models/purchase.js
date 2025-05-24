@@ -18,6 +18,9 @@ export default (sequelize) => {
     quantity: {
       type: DataTypes.INTEGER,
       defaultValue: 1,
+      validate: {
+        min:1
+      }
     },
   }, {
     timestamps: false,
