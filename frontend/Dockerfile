@@ -14,7 +14,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copia o resultado da build para o Nginx
-# COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copia um nginx.conf personalizado, se existir
 #COPY nginx.conf /etc/nginx/nginx.conf
