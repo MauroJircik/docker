@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
+RUN npm install && npm run build
 
 # Etapa 2 – Servidor (Nginx)
 FROM nginx:alpine
