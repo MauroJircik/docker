@@ -3,8 +3,11 @@ services:
     image: concord-backend
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.role == manager]
     ports:
-      - "3001:3001"
+      - target: 3001
+        published: 3001
     networks:
       - app-net
 
@@ -12,11 +15,14 @@ services:
     image: concord-frontend
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.role == manager]
     ports:
-      - "8080:80"
+      - target: 80
+        published: 8080
     networks:
       - app-net
 
 networks:
   app-net:
-    external: true
+    driver: overlay
