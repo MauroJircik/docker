@@ -3,13 +3,8 @@ services:
     image: concord-backend
     deploy:
       replicas: 1
-      placement:
-        constraints: [node.role == manager]
     ports:
-      - target: 3001
-        published: 3001
-        protocol: tcp
-        mode: host
+      - "3001:3001"
     networks:
       - app-net
 
@@ -17,13 +12,8 @@ services:
     image: concord-frontend
     deploy:
       replicas: 1
-      placement:
-        constraints: [node.role == manager]
     ports:
-      - target: 80
-        published: 8080
-        protocol: tcp
-        mode: host
+      - "8080:80"
     networks:
       - app-net
 
